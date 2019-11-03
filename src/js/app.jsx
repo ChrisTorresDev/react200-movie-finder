@@ -11,8 +11,8 @@ export default class App extends Component {
     return (
       <Router>
         <div className="container">
-          {/* <Route exact path='/' component={ MovieSearchContainer } />
-          <Route path='/movie/:id' component={ MovieDetailContainer } /> */}
+          <Route exact path='/' component={ MovieSearchContainer } />
+          <Route path='/movie/:id' component={ MovieDetailContainer } />
         </div>
       </Router>
     );

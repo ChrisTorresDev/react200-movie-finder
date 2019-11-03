@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function getMovie(movie_title) {
+export function getMovie(movieTitle) {
   return {
     type: 'GET_MOVIE',
     payload: axios.get(`/movieInfo/:inputValue`)

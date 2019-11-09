@@ -3,8 +3,8 @@ import MovieDetailContainer from './MovieDetailContainer';
 
 function mapStoreToProps(store) {
   return {
-    movieInfo: store.detailsRoot.movieInfo,
-    toggle: store.detailsRoot.toggle,
+    movieInfo: store.detailRoot.movieInfo,
+    toggle: store.detailRoot.toggle,
     listMovie: store.searchRoot.movie
   };
 }

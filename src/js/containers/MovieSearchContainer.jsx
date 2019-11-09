@@ -9,6 +9,7 @@ export default class MovieSearchContainer extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.enterKey = this.enterKey.bind(this);
   }
 
   onChange(e) {
@@ -18,52 +19,55 @@ export default class MovieSearchContainer extends React.Component {
   }
 
   handleClick(e) {
-    e.preventDefault()
+    e.preventDefault();
     const { dispatch, movieTitle } = this.props;
     dispatch(getMovie(movieTitle));
   }
 
+  enterKey() {
+    if(event.keyCode == 13) {
+      this.clickHandler();
+    }
+  }
+
   render() {
+
     const { movieTitle } = this.props;
+
     return (
-      <form>
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search for a Movie"
-            value={movieTitle}
-            onChange={this.onChange}
-          />
-          <div className="input-group-append">
-            <button
-              type="button"
-              className="btn btn-light"
-              onClick={this.handleClick}
-            >Submit
-            </button>
-          </div>
-          <div className="list">
-            <ul>
-              <List />
-            </ul>
-          </div>
+      <div className="input-group">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search for a Movie"
+          onKeyDown={ this.enterKey }
+          value={ movieTitle }
+          onChange={ this.onChange }
+        />
+        <div className="input-group-append">
+          <button
+            type="button"
+            className="btn btn-light"
+            onClick={ this.handleClick }
+          >Submit
+          </button>
         </div>
-      </form>
+        <div className="list">
+          <ul>
+            <List />
+          </ul>
+        </div>
+      </div>
     )
   }
 }
 
-function displayMovie(value) {
-  return {
+export const displayMovie = (value) => ({
     type: 'DISPLAY_MOVIE',
     payload: { value }
-  };
-}
+});
 
-function getMovie(movieTitle) {
-  return {
+export const getMovie = (movieTitle) => ({
     type: 'GET_MOVIE',
     payload: Axios.get(`/movieInfo/${movieTitle}&plot=short`)
-  };
-}
+});
